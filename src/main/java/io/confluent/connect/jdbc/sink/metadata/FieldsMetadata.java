@@ -102,7 +102,7 @@ public class FieldsMetadata {
         break;
 
       case RECORD_VALUE:
-        extractRecordValuePk(tableName, configuredPkFields, valueSchema, allFields, keyFieldNames);
+        extractRecordValuePk(tableName, configuredPkFields, valueSchema, allFields, keyFieldNames, insertMode);
         break;
 
       default:
