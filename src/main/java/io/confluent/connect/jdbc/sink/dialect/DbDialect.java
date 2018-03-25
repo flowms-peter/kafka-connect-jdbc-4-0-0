@@ -43,10 +43,12 @@ public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
+  private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd) {
+  DbDialect(String escapeStart, String escapeEnd, JdbcSinkConfig config) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
+    this.config = config;
   }
 
   public final String getInsert(
