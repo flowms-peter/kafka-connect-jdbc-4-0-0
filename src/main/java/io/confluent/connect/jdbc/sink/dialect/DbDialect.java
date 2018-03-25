@@ -96,8 +96,8 @@ public abstract class DbDialect {
 /*    if (!updateSetAppend().isEmpty()) {
  *     builder.append(", ");
  *     builder.append(updateSetAppend());
-*/   }
-
+ *   }
+*/
     if (!keyColumns.isEmpty()) {
       builder.append(" WHERE ");
     }
@@ -107,8 +107,8 @@ public abstract class DbDialect {
 /*    if (!updateWhereAppend().isEmpty()) {
  *     builder.append(" AND ");
  *     builder.append(updateWhereAppend());
-*/    }
-
+ *    }
+*/
     return builder.toString();
   }
 
