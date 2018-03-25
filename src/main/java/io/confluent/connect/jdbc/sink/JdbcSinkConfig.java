@@ -274,8 +274,8 @@ public class JdbcSinkConfig extends AbstractConfig {
     pkMode = PrimaryKeyMode.valueOf(getString(PK_MODE).toUpperCase());
     pkFields = getList(PK_FIELDS);
     fieldsWhitelist = new HashSet<>(getList(FIELDS_WHITELIST));
-    updateSetAppend = getString(UPDATE_SET_APPEND);
-    updateWhereAppend = getString(UPDATE_WHERE_APPEND);
+    updateSetAppend = getString(UPDATE_SETAPPEND);
+    updateWhereAppend = getString(UPDATE_WHEREAPPEND);
   }
 
   private String getPasswordValue(String key) {
