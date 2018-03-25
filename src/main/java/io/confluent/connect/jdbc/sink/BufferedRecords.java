@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+/* import org.apache.commons.lang3.StringUtils; */
 
 import io.confluent.connect.jdbc.sink.dialect.DbDialect;
 import io.confluent.connect.jdbc.sink.metadata.FieldsMetadata;
@@ -79,7 +79,7 @@ public class BufferedRecords {
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
-      StringUtils.replaceAll(insertSql, "\"_","\"");
+      /*StringUtils.replaceAll(insertSql, "\"_","\""); */
       log.debug("{} sql: {}", config.insertMode, insertSql);
       close();
       preparedStatement = connection.prepareStatement(insertSql);
