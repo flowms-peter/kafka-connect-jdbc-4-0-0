@@ -34,6 +34,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import io.confluent.connect.jdbc.sink.metadata.SinkRecordField;
 import io.confluent.connect.jdbc.util.DateTimeUtils;
+import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
