@@ -83,6 +83,8 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
     
+    JdbcSinkConfig config = new JdbcSinkConfig();
+
     if (!config.updateSetAppend.isEmpty()) {
       builder.append(", ");
       builder.append(config.updateSetAppend);
@@ -94,8 +96,6 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
     
-    JdbcSinkConfig config = new JdbcSinkConfig();
-
     if (!config.updateWhereAppend.isEmpty()) {
       builder.append(" AND ");
       builder.append(config.updateWhereAppend);
