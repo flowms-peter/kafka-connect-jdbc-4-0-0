@@ -15,6 +15,7 @@
  */
 
 package io.confluent.connect.jdbc.sink.dialect;
+package io.confluent.connect.jdbc.sink;
 
 import org.apache.kafka.connect.data.Date;
 import org.apache.kafka.connect.data.Decimal;
