@@ -34,7 +34,6 @@ import javax.xml.bind.DatatypeConverter;
 
 import io.confluent.connect.jdbc.sink.metadata.SinkRecordField;
 import io.confluent.connect.jdbc.util.DateTimeUtils;
-import io.confluent.connect.jdbc.sink;
 
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
@@ -66,7 +65,6 @@ public abstract class DbDialect {
   }
 
   public final String getUpdate(
-      final JdbcSinkConfig config,
       final String tableName,
       final Collection<String> keyColumns,
       final Collection<String> nonKeyColumns
