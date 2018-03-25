@@ -90,7 +90,7 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
     
-    StringUtil.replaceAll(builder, " _"," ");
+    StringUtils.replaceAll(builder, " _"," ");
     return builder.toString();
   }
 
