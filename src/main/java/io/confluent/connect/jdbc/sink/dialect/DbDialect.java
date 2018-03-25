@@ -84,9 +84,11 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
+    JdbcSinkConfig sinkConfig = JdbcSinkConfig(new Map<?, ?>());
+      
     if (!keyColumns.isEmpty()) {
       builder.append(", ");
-      builder.append(JdbcSinkConfig.updateSetAppend);
+      builder.append(sinkConfig.updateSetAppend);
       builder.append(" WHERE ");
       //builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
     }
