@@ -93,10 +93,10 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
     
-    if (!updateSetAppend().isEmpty()) {
-      builder.append(", ");
-      builder.append(updateSetAppend());
-    }
+/*    if (!updateSetAppend().isEmpty()) {
+ *     builder.append(", ");
+ *     builder.append(updateSetAppend());
+*/   }
 
     if (!keyColumns.isEmpty()) {
       builder.append(" WHERE ");
@@ -104,10 +104,10 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
     
-    if (!updateWhereAppend().isEmpty()) {
-      builder.append(" AND ");
-      builder.append(updateWhereAppend());
-    }
+/*    if (!updateWhereAppend().isEmpty()) {
+ *     builder.append(" AND ");
+ *     builder.append(updateWhereAppend());
+*/    }
 
     return builder.toString();
   }
