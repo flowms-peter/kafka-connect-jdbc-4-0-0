@@ -34,7 +34,6 @@ import javax.xml.bind.DatatypeConverter;
 
 import io.confluent.connect.jdbc.sink.metadata.SinkRecordField;
 import io.confluent.connect.jdbc.util.DateTimeUtils;
-import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
@@ -46,10 +45,9 @@ public abstract class DbDialect {
   private final String escapeEnd;
   private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd, JdbcSinkConfig config) {
+  DbDialect(String escapeStart, String escapeEnd) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
-    this.config = config;
   }
 
   public final String getInsert(
