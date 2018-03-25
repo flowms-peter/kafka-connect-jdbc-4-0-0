@@ -70,6 +70,7 @@ public abstract class DbDialect {
       final Collection<String> keyColumns,
       final Collection<String> nonKeyColumns
   ) {
+    JdbcSinkConfig config = new JdbcSinkConfig();
     StringBuilder builder = new StringBuilder("UPDATE ");
     builder.append(escaped(tableName));
     builder.append(" SET ");
@@ -83,9 +84,9 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
     
-    if (!JdbcSinkConfig.updateSetAppend.isEmpty()) {
+    if (!config.updateSetAppend.isEmpty()) {
       builder.append(", ");
-      builder.append(JdbcSinkConfig.updateSetAppend);
+      builder.append(config.updateSetAppend);
     }
 
     if (!keyColumns.isEmpty()) {
@@ -94,9 +95,9 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
 
-    if (!JdbcSinkConfig.updateWhereAppend.isEmpty()) {
+    if (!config.updateWhereAppend.isEmpty()) {
       builder.append(" AND ");
-      builder.append(JdbcSinkConfig.updateWhereAppend);
+      builder.append(config.updateWhereAppend);
     }
 
     return builder.toString();
