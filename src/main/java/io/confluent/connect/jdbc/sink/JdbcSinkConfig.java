@@ -165,6 +165,20 @@ public class JdbcSinkConfig extends AbstractConfig {
       + "(s) form the primary key columns in the destination database,"
       + " while this configuration is applicable for the other columns.";
   private static final String FIELDS_WHITELIST_DISPLAY = "Fields Whitelist";
+  
+  public static final String UPDATE_SETAPPEND = "update.setappend";
+  private static final String UPDATE_SETAPPEND_DEFAULT = "";
+  private static final String UPDATE_SETAPPEND_DOC =
+      "allows to append an SQL string for sink in update mode "
+      + "i.e. append mod_date_time = now()";
+  private static final String UPDATE_SETAPPEND_DISPLAY = "Update-SetAppend";
+
+  public static final String UPDATE_WHEREAPPEND = "update.whereappend";
+  private static final String UPDATE_WHEREAPPEND_DEFAULT = "";
+  private static final String UPDATE_WHEREAPPEND_DOC =
+      "allows to append an SQL string for sink in update mode "
+      + "i.e. append AND status = 0";
+  private static final String UPDATE_WHEREAPPEND_DISPLAY = "Update-WhereAppend";
 
   private static final ConfigDef.Range NON_NEGATIVE_INT_VALIDATOR = ConfigDef.Range.atLeast(0);
 
@@ -207,6 +221,12 @@ public class JdbcSinkConfig extends AbstractConfig {
       .define(FIELDS_WHITELIST, ConfigDef.Type.LIST, FIELDS_WHITELIST_DEFAULT,
               ConfigDef.Importance.MEDIUM, FIELDS_WHITELIST_DOC,
               DATAMAPPING_GROUP, 4, ConfigDef.Width.LONG, FIELDS_WHITELIST_DISPLAY)
+      .define(UPDATE_SETAPPEND, ConfigDef.Type.STRING, null,
+              ConfigDef.Importance.MEDIUM, UPDATE_SETAPPEND_DOC,
+              DATAMAPPING_GROUP, 5, ConfigDef.Width.LONG, UPDATE_SETAPPEND_DISPLAY)
+      .define(UPDATE_WHEREAPPEND, ConfigDef.Type.STRING, null,
+              ConfigDef.Importance.MEDIUM, UPDATE_WHEREAPPEND_DOC,
+              DATAMAPPING_GROUP, 6, ConfigDef.Width.LONG, UPDATE_WHEREAPPEND_DISPLAY)
       // DDL
       .define(AUTO_CREATE, ConfigDef.Type.BOOLEAN, AUTO_CREATE_DEFAULT,
               ConfigDef.Importance.MEDIUM, AUTO_CREATE_DOC,
@@ -227,6 +247,8 @@ public class JdbcSinkConfig extends AbstractConfig {
   public final String connectionUser;
   public final String connectionPassword;
   public final String tableNameFormat;
+  public final String updateSetAppend;
+  public final String updateWhereAppend;
   public final int batchSize;
   public final int maxRetries;
   public final int retryBackoffMs;
@@ -252,6 +274,8 @@ public class JdbcSinkConfig extends AbstractConfig {
     pkMode = PrimaryKeyMode.valueOf(getString(PK_MODE).toUpperCase());
     pkFields = getList(PK_FIELDS);
     fieldsWhitelist = new HashSet<>(getList(FIELDS_WHITELIST));
+    updateSetAppend = getString(UPDATE_SET_APPEND);
+    updateWhereAppend = getString(UPDATE_WHERE_APPEND);
   }
 
   private String getPasswordValue(String key) {
