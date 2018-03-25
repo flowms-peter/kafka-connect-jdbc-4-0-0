@@ -40,7 +40,7 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToBuilder;
 
-import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
+//import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 public abstract class DbDialect {
 
@@ -85,8 +85,8 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
-    Map<String, String> testMap = new HashMap<String, String>();
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
+    //Map<String, String> testMap = new HashMap<String, String>();
+    //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
       
     if (!keyColumns.isEmpty()) {
       //builder.append(", ");
