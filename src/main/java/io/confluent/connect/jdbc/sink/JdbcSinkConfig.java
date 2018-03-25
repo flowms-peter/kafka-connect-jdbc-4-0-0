@@ -247,8 +247,8 @@ public class JdbcSinkConfig extends AbstractConfig {
   public final String connectionUser;
   public final String connectionPassword;
   public final String tableNameFormat;
-  public final String updateSetAppend;
-  public final String updateWhereAppend;
+  public static final String updateSetAppend;
+  public static final String updateWhereAppend;
   public final int batchSize;
   public final int maxRetries;
   public final int retryBackoffMs;
