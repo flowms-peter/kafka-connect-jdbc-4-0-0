@@ -57,6 +57,7 @@ public class FieldsMetadata {
   public static FieldsMetadata extract(
       final String tableName,
       final JdbcSinkConfig.PrimaryKeyMode pkMode,
+      final JdbcSinkConfig.InsertMode insertMode,
       final List<String> configuredPkFields,
       final Set<String> fieldsWhitelist,
       final SchemaPair schemaPair
@@ -64,6 +65,7 @@ public class FieldsMetadata {
     return extract(
         tableName,
         pkMode,
+        insertMode,
         configuredPkFields,
         fieldsWhitelist,
         schemaPair.keySchema,
@@ -247,7 +249,7 @@ public class FieldsMetadata {
       }
     } else {
       for (String fieldName : configuredPkFields) {
-        if (valueSchema.field(fieldName) == null && valueSchema.field(fieldName) != null) {
+        if (valueSchema.field(fieldName) == null && insertMode != 'UPDATE') {
           throw new ConnectException(String.format(
               "PK mode for table '%s' is %s with configured PK fields %s, but record value "
               + "schema does not contain field: %s",
