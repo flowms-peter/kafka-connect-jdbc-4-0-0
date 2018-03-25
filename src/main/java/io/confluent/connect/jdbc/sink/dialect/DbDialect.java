@@ -43,10 +43,18 @@ public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
+  private final JdbcSinkConfig.updateWhereAppend upWhereAppend;
+  private final JdbcSinkConfig.updateSetAppend upSetAppend;
 
-  DbDialect(String escapeStart, String escapeEnd) {
+  DbDialect(String escapeStart, 
+            String escapeEnd, 
+            JdbcSinkConfig.updateWhereAppend upWhereAppend, 
+            JdbcSinkConfig.updateSetAppend upSetAppend
+  ) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
+    this.upWhereAppend = upWhereAppend;
+    this.upSetAppend = upSetAppend;
   }
 
   public final String getInsert(
@@ -82,9 +90,9 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
     
-    if (!config.updateSetAppend.isEmpty()) {
+    if (!upSetAppend.isEmpty()) {
       builder.append(", ");
-      builder.append(config.updateSetAppend);
+      builder.append(upSetAppend);
     }
 
     if (!keyColumns.isEmpty()) {
@@ -93,9 +101,9 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
 
-    if (!config.updateWhereAppend.isEmpty()) {
+    if (!upWhereAppend.isEmpty()) {
       builder.append(" AND ");
-      builder.append(config.updateWhereAppend);
+      builder.append(upWhereAppend);
     }
 
     return builder.toString();
