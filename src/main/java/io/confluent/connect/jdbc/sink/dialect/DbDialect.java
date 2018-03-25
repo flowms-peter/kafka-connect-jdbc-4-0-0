@@ -84,7 +84,8 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(new HashMap<String, String>());
+    Map<String, String> testMap = new HashMap<String, String>();
+    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
       
     if (!keyColumns.isEmpty()) {
       builder.append(", ");
