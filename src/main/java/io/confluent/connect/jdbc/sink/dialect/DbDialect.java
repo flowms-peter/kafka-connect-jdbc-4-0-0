@@ -53,11 +53,11 @@ public abstract class DbDialect {
   }
   
   public String updateSetAppend() {
-    return config.updateSetAppend();
+    return config.updateSetAppend;
   }
   
   public String updateWhereAppend() {
-    return config.updateWhereAppend();
+    return config.updateWhereAppend;
   }
 
   public final String getInsert(
