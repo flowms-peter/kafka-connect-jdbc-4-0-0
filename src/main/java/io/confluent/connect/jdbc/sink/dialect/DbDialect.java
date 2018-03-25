@@ -32,8 +32,6 @@ import java.util.Map;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.apache.commons.lang3.StringUtils;
-
 import io.confluent.connect.jdbc.sink.metadata.SinkRecordField;
 import io.confluent.connect.jdbc.util.DateTimeUtils;
 
@@ -90,7 +88,6 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
     
-    StringUtils.replaceAll(builder.toString(), " _"," ");
     return builder.toString();
   }
 
