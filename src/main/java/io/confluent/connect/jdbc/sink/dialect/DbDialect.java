@@ -39,6 +39,8 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToBuilder;
 
+import io.confluent.connect.jdbc.sink.JdbcSinkConfig.*;
+
 public abstract class DbDialect {
 
   private final String escapeStart;
@@ -83,7 +85,10 @@ public abstract class DbDialect {
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
     if (!keyColumns.isEmpty()) {
-      builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
+      builder.append(", ");
+      builder.append(JdbcSinkConfig.updateSetAppend);
+      builder.append(" WHERE ");
+      //builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
     }
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
