@@ -74,7 +74,6 @@ public class FieldsMetadata {
   public static FieldsMetadata extract(
       final String tableName,
       final JdbcSinkConfig.PrimaryKeyMode pkMode,
-      final JdbcSinkConfig.InsertMode insertMode,
       final List<String> configuredPkFields,
       final Set<String> fieldsWhitelist,
       final Schema keySchema,
