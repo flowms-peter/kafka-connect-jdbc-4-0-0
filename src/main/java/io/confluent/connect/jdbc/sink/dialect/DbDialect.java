@@ -86,7 +86,7 @@ public abstract class DbDialect {
       builder.append(" WHERE ");
     }
 
-    joinToBuilder(builder, ", ", keyColumns, updateTransformer);
+    joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
     return builder.toString();
   }
 
