@@ -235,7 +235,8 @@ public class FieldsMetadata {
       final List<String> configuredPkFields,
       final Schema valueSchema,
       final Map<String, SinkRecordField> allFields,
-      final Set<String> keyFieldNames
+      final Set<String> keyFieldNames,
+      final JdbcSinkConfig.InsertMode insertMode
   ) {
     if (valueSchema == null) {
       throw new ConnectException(String.format(
