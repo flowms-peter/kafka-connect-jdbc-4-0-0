@@ -79,7 +79,7 @@ public class BufferedRecords {
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
-      StringUtils.replaceAll(insertSql, " _"," ");
+      StringUtils.replaceAll(insertSql, "\"_","\"");
       log.debug("{} sql: {}", config.insertMode, insertSql);
       close();
       preparedStatement = connection.prepareStatement(insertSql);
