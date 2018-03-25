@@ -81,13 +81,23 @@ public abstract class DbDialect {
     };
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
+    
+    if (!JdbcSinkConfig.updateSetAppend.isEmpty()) {
+      builder.append(", ");
+      builder.append(JdbcSinkConfig.updateSetAppend);
+    }
 
     if (!keyColumns.isEmpty()) {
       builder.append(" WHERE ");
     }
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
-    
+
+    if (!JdbcSinkConfig.updateWhereAppend.isEmpty()) {
+      builder.append(" AND ");
+      builder.append(JdbcSinkConfig.updateWhereAppend);
+    }
+
     return builder.toString();
   }
 
