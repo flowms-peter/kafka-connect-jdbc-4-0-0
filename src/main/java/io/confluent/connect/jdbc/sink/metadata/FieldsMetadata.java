@@ -258,7 +258,7 @@ public class FieldsMetadata {
       }
     } else {
       for (String fieldName : configuredPkFields) {
-        if (valueSchema.field(fieldName) == null && insertMode.type == UDPATE) {
+        if (valueSchema.field(fieldName) == null && JdbcSinkConfig.insertMode == UDPATE) {
           throw new ConnectException(String.format(
               "PK mode for table '%s' is %s with configured PK fields %s, but record value "
               + "schema does not contain field: %s",
