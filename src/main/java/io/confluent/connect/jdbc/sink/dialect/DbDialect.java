@@ -83,7 +83,7 @@ public abstract class DbDialect {
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
     if (!keyColumns.isEmpty()) {
-      builder.append(" WHERE ");
+      builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
     }
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
