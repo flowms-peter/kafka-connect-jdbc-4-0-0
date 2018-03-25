@@ -39,7 +39,7 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToBuilder;
 
-import static io.confluent.connect.jdbc.sink.JdbcSinkConfig;
+import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 public abstract class DbDialect {
 
