@@ -89,10 +89,10 @@ public abstract class DbDialect {
     JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
       
     if (!keyColumns.isEmpty()) {
-      builder.append(", ");
-      builder.append(sinkConfig.updateSetAppend);
-      builder.append(" WHERE ");
-      //builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
+      //builder.append(", ");
+      //builder.append(sinkConfig.updateSetAppend);
+      //builder.append(" WHERE ");
+      builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
     }
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
