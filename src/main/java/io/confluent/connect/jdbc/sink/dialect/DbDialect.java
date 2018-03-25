@@ -44,6 +44,7 @@ public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
+  private final JdbcSinkConfig JdbcSinkConfig;
 
   DbDialect(String escapeStart, String escapeEnd) {
     this.escapeStart = escapeStart;
