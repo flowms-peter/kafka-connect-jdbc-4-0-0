@@ -34,7 +34,6 @@ import javax.xml.bind.DatatypeConverter;
 
 import io.confluent.connect.jdbc.sink.metadata.SinkRecordField;
 import io.confluent.connect.jdbc.util.DateTimeUtils;
-import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
@@ -44,20 +43,10 @@ public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
-  private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd,JdbcSinkConfig config) {
+  DbDialect(String escapeStart, String escapeEnd) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
-    this.config = config;
-  }
-  
-  public String updateSetAppend() {
-    return config.updateSetAppend;
-  }
-  
-  public String updateWhereAppend() {
-    return config.updateWhereAppend;
   }
 
   public final String getInsert(
@@ -92,23 +81,12 @@ public abstract class DbDialect {
     };
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
-    
-    /*    if (!updateSetAppend().isEmpty()) {
-     *     builder.append(", ");
-     *     builder.append(updateSetAppend());
-     *   }
-     */
+
     if (!keyColumns.isEmpty()) {
       builder.append(" WHERE ");
     }
 
-    joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
-    
-    /*    if (!updateWhereAppend().isEmpty()) {
-     *      builder.append(" AND ");
-     *     builder.append(updateWhereAppend());
-     *    }
-     */
+    joinToBuilder(builder, ", ", keyColumns, updateTransformer);
     return builder.toString();
   }
 
