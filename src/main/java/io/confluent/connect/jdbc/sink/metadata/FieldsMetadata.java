@@ -57,7 +57,6 @@ public class FieldsMetadata {
   public static FieldsMetadata extract(
       final String tableName,
       final JdbcSinkConfig.PrimaryKeyMode pkMode,
-      final JdbcSinkConfig.InsertMode insertMode,
       final List<String> configuredPkFields,
       final Set<String> fieldsWhitelist,
       final SchemaPair schemaPair
@@ -65,7 +64,6 @@ public class FieldsMetadata {
     return extract(
         tableName,
         pkMode,
-        insertMode,
         configuredPkFields,
         fieldsWhitelist,
         schemaPair.keySchema,
@@ -102,14 +100,7 @@ public class FieldsMetadata {
         break;
 
       case RECORD_VALUE:
-        extractRecordValuePk(
-            tableName, 
-            configuredPkFields, 
-            valueSchema, 
-            allFields, 
-            keyFieldNames, 
-            insertMode
-        );
+        extractRecordValuePk(tableName, configuredPkFields, valueSchema, allFields, keyFieldNames);
         break;
 
       default:
@@ -242,8 +233,7 @@ public class FieldsMetadata {
       final List<String> configuredPkFields,
       final Schema valueSchema,
       final Map<String, SinkRecordField> allFields,
-      final Set<String> keyFieldNames,
-      final JdbcSinkConfig.InsertMode insertMode
+      final Set<String> keyFieldNames
   ) {
     if (valueSchema == null) {
       throw new ConnectException(String.format(
@@ -258,7 +248,7 @@ public class FieldsMetadata {
       }
     } else {
       for (String fieldName : configuredPkFields) {
-        if (valueSchema.field(fieldName) == null && JdbcSinkConfig.insertMode == UDPATE) {
+        if (valueSchema.field(fieldName) == null && (valueSchema.field(fieldName) != null) {
           throw new ConnectException(String.format(
               "PK mode for table '%s' is %s with configured PK fields %s, but record value "
               + "schema does not contain field: %s",
