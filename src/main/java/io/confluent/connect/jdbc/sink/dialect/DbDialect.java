@@ -58,7 +58,7 @@ public abstract class DbDialect {
     
   }
   
-  log.debug("Logging first: {}", config.pkMode);
+  //log.debug("Logging first: {}", config.pkMode);
 
   public final String getInsert(
       final String tableName,
