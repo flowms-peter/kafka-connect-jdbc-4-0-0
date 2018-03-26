@@ -92,7 +92,7 @@ public abstract class DbDialect {
     //Map<String, String> testMap = new HashMap<String, String>();
     //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
     
-    JdbcSinkConfig sinkConfig = new JdbcSinConfig();
+    JdbcSinkConfig sinkConfig = new JdbcSinkConfig();
       
     if (!keyColumns.isEmpty()) {
       
