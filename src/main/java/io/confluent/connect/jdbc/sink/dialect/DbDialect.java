@@ -91,7 +91,7 @@ public abstract class DbDialect {
       
     if (!keyColumns.isEmpty()) {
       
-      log.debug("input: {}", input);
+      log.debug("Logging: {}", tableName);
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
