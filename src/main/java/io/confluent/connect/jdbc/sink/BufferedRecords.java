@@ -18,6 +18,7 @@ package io.confluent.connect.jdbc.sink;
 
 import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.sink.SinkRecord;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -77,6 +78,16 @@ public class BufferedRecords {
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
+      
+      if (!updateSetAppend.isNotEmpty) {
+        updateSetAppend = ", " + updateSetAppend;
+      }
+      
+      if (!updateWhereAppend.isNotEmpty) {
+        updateWhereAppend = updateWhereAppend + " AND ";
+      }
+        
+      replace(insertSql, " WHERE ", updateSetAppend + " WHERE " + updateSetAppend);
       log.debug("{} sql: {}", config.insertMode, insertSql);
       close();
       preparedStatement = connection.prepareStatement(insertSql);
