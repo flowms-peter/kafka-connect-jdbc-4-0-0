@@ -287,7 +287,7 @@ public class JdbcSinkConfig extends AbstractConfig {
   }
   
   public String upSetAppend() {
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(Map<?, ?>);
+    JdbcSinkConfig sinkConfig = new JdbcSinkConfig.JdbcSinkConfig(Map<?, ?>);
     return sinkConfig.updateSetAppend();
   }
 
