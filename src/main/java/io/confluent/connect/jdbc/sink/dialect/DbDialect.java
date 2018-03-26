@@ -46,6 +46,7 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToB
 
 public abstract class DbDialect {
 
+  private static final Logger log = LoggerFactory.getLogger(DbDialect.class);
   private final String escapeStart;
   private final String escapeEnd;
 
