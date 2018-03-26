@@ -259,7 +259,7 @@ public class JdbcSinkConfig extends AbstractConfig {
   public final List<String> pkFields;
   public final Set<String> fieldsWhitelist;
 
-  public final JdbcSinkConfig(Map<?, ?> props) {
+  public JdbcSinkConfig(Map<?, ?> props) {
     super(CONFIG_DEF, props);
     connectionUrl = getString(CONNECTION_URL);
     connectionUser = getString(CONNECTION_USER);
