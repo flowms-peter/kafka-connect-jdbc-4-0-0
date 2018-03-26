@@ -31,7 +31,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-//import java.util.HashMap;
+import java.util.HashMap;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -92,7 +92,7 @@ public abstract class DbDialect {
     //Map<String, String> testMap = new HashMap<String, String>();
     //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
     
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig();
+    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(HashMap<String, String>);
       
     if (!keyColumns.isEmpty()) {
       
