@@ -288,7 +288,7 @@ public class JdbcSinkConfig extends AbstractConfig {
   
   
   public static String upSetAppend() {
-    getString(UPDATE_SETAPPEND;
+    getString(UPDATE_SETAPPEND);
   }
 
 
