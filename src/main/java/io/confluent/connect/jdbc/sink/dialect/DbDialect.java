@@ -49,7 +49,7 @@ public abstract class DbDialect {
   private static final Logger log = LoggerFactory.getLogger(DbDialect.class);
   private final String escapeStart;
   private final String escapeEnd;
-  private JdbcSinkConfig config;
+  private final JdbcSinkConfig config;
 
   DbDialect(String escapeStart, String escapeEnd, JdbcSinkConfig config) {
     this.escapeStart = escapeStart;
