@@ -288,13 +288,13 @@ public class JdbcSinkConfig extends AbstractConfig {
   
   
   public static String upSetAppend() {
-    JdbcSinkConfig config = new JdbcSinkConfig();
+    JdbcSinkConfig config = new JdbcSinkConfig(Map<?, ?> props);
     return config.updateSetAppend;
   }
 
 
   public static String upWhereAppend() {
-    JdbcSinkConfig config = new JdbcSinkConfig();
+    JdbcSinkConfig config = new JdbcSinkConfig(Map<?, ?> props);
     return config.updateWhereAppend;
   }
 
