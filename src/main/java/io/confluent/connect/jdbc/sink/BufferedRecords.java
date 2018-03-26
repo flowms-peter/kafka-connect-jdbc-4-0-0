@@ -79,11 +79,11 @@ public class BufferedRecords {
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
       
-      if (!upSetAppend.isNotEmpty) {
+      if (!upSetAppend().isNotEmpty) {
         upSetAppend = ", " + upSetAppend;
       }
       
-      if (!upWhereAppend.isNotEmpty) {
+      if (!upWhereAppend().isNotEmpty) {
         upWhereAppend = upWhereAppend + " AND ";
       }
         
