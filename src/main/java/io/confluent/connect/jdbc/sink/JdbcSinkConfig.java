@@ -286,8 +286,8 @@ public class JdbcSinkConfig extends AbstractConfig {
     return null;
   }
   
-  public static String upSetAppend() = JdbcSinkConfig.updateSetAppend;
-  public static String upWhereAppend() = JdbcSinkConfig.updateWhereAppend;
+  public static String upSetAppend = JdbcSinkConfig.updateSetAppend;
+  public static String upWhereAppend = JdbcSinkConfig.updateWhereAppend;
 
   private static class EnumValidator implements ConfigDef.Validator {
     private final List<String> canonicalValues;
