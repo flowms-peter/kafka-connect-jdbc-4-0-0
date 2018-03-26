@@ -22,8 +22,6 @@ import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.Time;
 import org.apache.kafka.connect.data.Timestamp;
 import org.apache.kafka.connect.errors.ConnectException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-//import java.util.HashMap;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -42,23 +39,15 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToBuilder;
 
-import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
-
 public abstract class DbDialect {
 
-  private static final Logger log = LoggerFactory.getLogger(DbDialect.class);
   private final String escapeStart;
   private final String escapeEnd;
-  private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd, JdbcSinkConfig config) {
+  DbDialect(String escapeStart, String escapeEnd) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
-    this.config = config;
-    
   }
-  
-  //log.debug("Logging first: {}", config.pkMode);
 
   public final String getInsert(
       final String tableName,
@@ -93,16 +82,8 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
-    //Map<String, String> testMap = new HashMap<String, String>();
-    //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap props);
-      
     if (!keyColumns.isEmpty()) {
-      
-      //log.debug("Logging: {}", config.pkMode());
-      //builder.append(", ");
-      //builder.append(sinkConfig.updateSetAppend);
-      //builder.append(" WHERE ");
-      builder.append(" , MOD_DATE_TIME = CAST (NOW() as TIMESTAMP(0)) WHERE ");
+      builder.append(" WHERE ");
     }
 
     joinToBuilder(builder, " AND ", keyColumns, updateTransformer);
