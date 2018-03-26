@@ -246,15 +246,16 @@ public class FieldsMetadata {
         keyFieldNames.add(keyField.name());
       }
     } else {
-      for (String fieldName : configuredPkFields) {
-        if (valueSchema.field(fieldName) == null && valueSchema.field(fieldName) != null) {
-          throw new ConnectException(String.format(
-              "PK mode for table '%s' is %s with configured PK fields %s, but record value "
-              + "schema does not contain field: %s",
-              tableName, JdbcSinkConfig.PrimaryKeyMode.RECORD_VALUE, configuredPkFields, fieldName
-          ));
-        }
-      }
+      //allow non-pk fields in where clause
+      //for (String fieldName : configuredPkFields) {
+      //  if (valueSchema.field(fieldName) == null) {
+      //    throw new ConnectException(String.format(
+      //        "PK mode for table '%s' is %s with configured PK fields %s, but record value "
+      //        + "schema does not contain field: %s",
+      //        tableName, JdbcSinkConfig.PrimaryKeyMode.RECORD_VALUE, configuredPkFields, fieldName
+      //    ));
+      //  }
+      //}
       keyFieldNames.addAll(configuredPkFields);
     }
     for (String fieldName : keyFieldNames) {
