@@ -40,16 +40,14 @@ import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.Transform
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.joinToBuilder;
 import static io.confluent.connect.jdbc.sink.dialect.StringBuilderUtil.copiesToBuilder;
 
-import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
+//import io.confluent.connect.jdbc.sink.JdbcSinkConfig;
 
 public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
-  private final JdbcSinkConfig config;
 
-  DbDialect(JdbcSinkConfig config, String escapeStart, String escapeEnd) {
-    this.config = config;
+  DbDialect(String escapeStart, String escapeEnd) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
     
@@ -93,7 +91,7 @@ public abstract class DbDialect {
       
     if (!keyColumns.isEmpty()) {
       
-      log.debug("{} sql: {}", config.insertMode, input);
+      log.debug("input: {}", input);
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
