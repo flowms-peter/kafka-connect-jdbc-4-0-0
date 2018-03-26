@@ -58,7 +58,7 @@ public abstract class DbDialect {
     
   }
   
-  log.debug("Logging: {}", config.pkMode);
+  log.debug("Logging first: {}", config.pkMode);
 
   public final String getInsert(
       final String tableName,
@@ -98,7 +98,7 @@ public abstract class DbDialect {
       
     if (!keyColumns.isEmpty()) {
       
-      log.debug("Logging: {}", config.pkMode);
+      //log.debug("Logging: {}", config.pkMode());
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
