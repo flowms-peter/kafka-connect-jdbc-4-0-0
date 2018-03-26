@@ -92,11 +92,11 @@ public abstract class DbDialect {
     //Map<String, String> testMap = new HashMap<String, String>();
     //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
     
-    JdbcSinkConfig.upSetAppend upsetappend = new JdbcSinkConfig.upSetAppend();
+    JdbcSinkConfig sinkConfig = new JdbcSinConfig;
       
     if (!keyColumns.isEmpty()) {
       
-      log.debug("Logging: {}", upsetappend());
+      log.debug("Logging: {}", sinkConfig.upSetAppend());
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
