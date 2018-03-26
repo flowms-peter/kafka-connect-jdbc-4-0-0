@@ -287,8 +287,7 @@ public class JdbcSinkConfig extends AbstractConfig {
   }
   
   public String upSetAppend() {
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig();
-    return sinkConfig.updateSetAppend();
+    return updateSetAppend.toString();
   }
 
   private static class EnumValidator implements ConfigDef.Validator {
