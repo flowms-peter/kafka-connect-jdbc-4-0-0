@@ -288,12 +288,14 @@ public class JdbcSinkConfig extends AbstractConfig {
   
   
   public static String upSetAppend() {
-    return JdbcSinkConfig.updateSetAppend;
+    JdbcSinkConfig config = new JdbcSinkConfig();
+    return config.updateSetAppend;
   }
 
 
   public static String upWhereAppend() {
-    return JdbcSinkConfig.updateWhereAppend;
+    JdbcSinkConfig config = new JdbcSinkConfig();
+    return config.updateWhereAppend;
   }
 
 
