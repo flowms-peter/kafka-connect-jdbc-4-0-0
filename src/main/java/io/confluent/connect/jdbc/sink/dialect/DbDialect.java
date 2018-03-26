@@ -46,10 +46,13 @@ public abstract class DbDialect {
 
   private final String escapeStart;
   private final String escapeEnd;
+  private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd) {
+  DbDialect(JdbcSinkConfig config, String escapeStart, String escapeEnd) {
+    this.config = config;
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
+    
   }
 
   public final String getInsert(
@@ -89,6 +92,8 @@ public abstract class DbDialect {
     //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap);
       
     if (!keyColumns.isEmpty()) {
+      
+      log.debug("{} sql: {}", config.insertMode, input);
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
