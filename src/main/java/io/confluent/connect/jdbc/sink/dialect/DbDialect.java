@@ -49,10 +49,12 @@ public abstract class DbDialect {
   private static final Logger log = LoggerFactory.getLogger(DbDialect.class);
   private final String escapeStart;
   private final String escapeEnd;
+  private final JdbcSinkConfig config;
 
-  DbDialect(String escapeStart, String escapeEnd) {
+  DbDialect(String escapeStart, String escapeEnd, JdbcSinkConfig config) {
     this.escapeStart = escapeStart;
     this.escapeEnd = escapeEnd;
+    this.config = config;
     
   }
 
@@ -89,12 +91,12 @@ public abstract class DbDialect {
 
     joinToBuilder(builder, ", ", nonKeyColumns, updateTransformer);
 
-    Map<String, String> testMap = new HashMap<String, String>();
-    JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap props);
+    //Map<String, String> testMap = new HashMap<String, String>();
+    //JdbcSinkConfig sinkConfig = new JdbcSinkConfig(testMap props);
       
     if (!keyColumns.isEmpty()) {
       
-      log.debug("Logging: {}", sinkConfig.upSetAppend());
+      log.debug("Logging: {}", config.upSetAppend);
       //builder.append(", ");
       //builder.append(sinkConfig.updateSetAppend);
       //builder.append(" WHERE ");
