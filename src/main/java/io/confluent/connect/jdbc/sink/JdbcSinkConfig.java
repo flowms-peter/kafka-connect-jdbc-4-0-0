@@ -286,11 +286,11 @@ public class JdbcSinkConfig extends AbstractConfig {
     return null;
   }
   
-  public static String upSetAppend() {
+  public final String upSetAppend() {
     return updateSetAppend.toString();
   }
   
-  public static String upWhereAppend() {
+  public final String upWhereAppend() {
     return updateWhereAppend.toString();
   }
 
