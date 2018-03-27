@@ -77,8 +77,6 @@ public class BufferedRecords {
           currentSchemaPair
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
-      final String insertSql = getInsertSql();
-      
       String upSetAp = "";
       
       if (!config.updateSetAppend.isEmpty()) {
@@ -90,8 +88,9 @@ public class BufferedRecords {
       if (!config.updateWhereAppend.isEmpty()) {
         upWhereAp = config.updateWhereAppend + " AND ";
       }
-        
-      replace(insertSql, " WHERE ", upSetAp + " WHERE " + upWhereAp);
+      
+      final String insertSql = getInsertSql().replace(insertSql, " WHERE ", upSetAp + " WHERE " + upWhereAp);
+      
       log.debug("{} sql: {}", config.insertMode, insertSql);
       close();
       preparedStatement = connection.prepareStatement(insertSql);
