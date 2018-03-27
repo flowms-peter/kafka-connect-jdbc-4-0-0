@@ -79,15 +79,15 @@ public class BufferedRecords {
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
       
-      String upSetAp = "";
+      private String upSetAp = "";
       
-      if (!config.updateSetAppend.isNotEmpty) {
+      if (!config.updateSetAppend.isEmpty) {
         upSetAp = ", " + config.updateSetAppend;
       }
       
-      String upWhereAp = "";
+      private String upWhereAp = "";
       
-      if (!config.updateWhereAppend.isNotEmpty) {
+      if (!config.updateWhereAppend.isEmpty) {
         upWhereAp = config.updateWhereAppend + " AND ";
       }
         
