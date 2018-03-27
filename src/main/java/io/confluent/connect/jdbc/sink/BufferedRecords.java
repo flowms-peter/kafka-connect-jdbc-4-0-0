@@ -92,9 +92,9 @@ public class BufferedRecords {
       final String insertSql = getInsertSql().replace(
           insertSql, 
           " WHERE ", 
-          upSetAp + 
-          " WHERE " + 
-          upWhereAp
+          upSetAp  
+          + " WHERE "
+          + upWhereAp
       );
       
       log.debug("{} sql: {}", config.insertMode, insertSql);
