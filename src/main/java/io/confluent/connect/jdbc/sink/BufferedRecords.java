@@ -77,13 +77,13 @@ public class BufferedRecords {
           currentSchemaPair
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
-      String upSetAp = "";
+      String upSetAp = " ";
       
       if (!config.updateSetAppend.isEmpty()) {
         upSetAp = ", " + config.updateSetAppend;
       }
       
-      String upWhereAp = "";
+      String upWhereAp = " ";
       
       if (!config.updateWhereAppend.isEmpty()) {
         upWhereAp = config.updateWhereAppend + " AND ";
