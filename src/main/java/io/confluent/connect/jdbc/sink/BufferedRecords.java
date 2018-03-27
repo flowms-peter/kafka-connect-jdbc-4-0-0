@@ -18,7 +18,7 @@ package io.confluent.connect.jdbc.sink;
 
 import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.sink.SinkRecord;
-//import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,8 +89,7 @@ public class BufferedRecords {
         upWhereAp = config.updateWhereAppend + " AND ";
       }
       
-      final String insertSql = getInsertSql().replace(
-          insertSql, 
+      final String insertSql = getInsertSql().replaceAll(
           " WHERE ", 
           upSetAp  
           + " WHERE "
