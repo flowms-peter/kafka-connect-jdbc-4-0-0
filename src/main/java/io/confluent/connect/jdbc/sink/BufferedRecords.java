@@ -81,7 +81,7 @@ public class BufferedRecords {
       
       if (!config.updateSetAppend.isEmpty()) {
       //  upSetAp = ", " + config.updateSetAppend;
-        upSetAp = " ";
+          upSetAp = " ";
       }
       
       String upWhereAp = " ";
