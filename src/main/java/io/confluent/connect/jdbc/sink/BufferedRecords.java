@@ -74,8 +74,6 @@ public class BufferedRecords {
           config.pkMode,
           config.pkFields,
           config.fieldsWhitelist,
-          config.updateSetAppend,
-          config.updateWhereAppend,
           currentSchemaPair
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
