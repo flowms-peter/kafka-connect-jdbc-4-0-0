@@ -84,7 +84,7 @@ public abstract class DbDialect {
 
     if (!keyColumns.isEmpty()) {
       builder.append(" WHERE ");
-    } ELSE {
+    } else {
       throw new ConnectException("Not allowed to execute UPDATE without WHERE clause ");
     }
 
