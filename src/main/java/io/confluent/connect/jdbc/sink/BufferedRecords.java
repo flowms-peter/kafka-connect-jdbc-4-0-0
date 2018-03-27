@@ -86,9 +86,9 @@ public class BufferedRecords {
       
       String upWhereAp = " ";
       
-      //if (!config.updateWhereAppend.isEmpty()) {
-      //  upWhereAp = config.updateWhereAppend + " AND ";
-      //}
+      if (config.updateWhereAppend != null) {
+        upWhereAp = config.updateWhereAppend + " AND ";
+      }
       
       final String insertSql = getInsertSql().replaceAll(
           " WHERE ", 
