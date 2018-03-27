@@ -74,20 +74,26 @@ public class BufferedRecords {
           config.pkMode,
           config.pkFields,
           config.fieldsWhitelist,
+          config.updateSetAppend,
+          config.updateWhereAppend,
           currentSchemaPair
       );
       dbStructure.createOrAmendIfNecessary(config, connection, tableName, fieldsMetadata);
       final String insertSql = getInsertSql();
       
-      if (!upSetAppend().isNotEmpty) {
-        upSetAppend = ", " + upSetAppend;
+      String upSetAp = "";
+      
+      if (!config.updateSetAppend.isNotEmpty) {
+        upSetAp = ", " + config.updateSetAppend;
       }
       
-      if (!upWhereAppend().isNotEmpty) {
-        upWhereAppend = upWhereAppend + " AND ";
+      String upWhereAp = "";
+      
+      if (!config.updateWhereAppend.isNotEmpty) {
+        upWhereAp = config.updateWhereAppend + " AND ";
       }
         
-      replace(insertSql, " WHERE ", upSetAppend + " WHERE " + upWhereAppend);
+      replace(insertSql, " WHERE ", upSetAp + " WHERE " + upWhereAp);
       log.debug("{} sql: {}", config.insertMode, insertSql);
       close();
       preparedStatement = connection.prepareStatement(insertSql);
