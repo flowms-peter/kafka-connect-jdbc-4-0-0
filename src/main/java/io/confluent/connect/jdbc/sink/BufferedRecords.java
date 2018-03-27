@@ -81,13 +81,13 @@ public class BufferedRecords {
       
       String upSetAp = "";
       
-      if (!config.updateSetAppend.isEmpty) {
+      if (!config.updateSetAppend.isEmpty()) {
         upSetAp = ", " + config.updateSetAppend;
       }
       
       String upWhereAp = "";
       
-      if (!config.updateWhereAppend.isEmpty) {
+      if (!config.updateWhereAppend.isEmpty()) {
         upWhereAp = config.updateWhereAppend + " AND ";
       }
         
