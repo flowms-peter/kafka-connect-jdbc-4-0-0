@@ -121,6 +121,7 @@ public class JdbcSourceTask extends SourceTask {
         = config.getLong(JdbcSourceTaskConfig.TIMESTAMP_DELAY_INTERVAL_MS_CONFIG);
     boolean validateNonNulls
         = config.getBoolean(JdbcSourceTaskConfig.VALIDATE_NON_NULL_CONFIG);
+    Integer fetchSize = config.getInt(JdbcSourceTaskConfig.FETCH_SIZE_CONFIG);
 
     for (String tableOrQuery : tablesOrQuery) {
       final Map<String, String> partition;
