@@ -82,6 +82,11 @@ public class JdbcSourceConnectorConfig extends AbstractConfig {
       + "setting can be used to limit the amount of data buffered internally in the connector.";
   public static final int BATCH_MAX_ROWS_DEFAULT = 100;
   private static final String BATCH_MAX_ROWS_DISPLAY = "Max Rows Per Batch";
+  
+  public static final String FETCH_SIZE_CONFIG = "fetch.size";
+  public static final int FETCH_SIZE_DEFAULT = 100;
+  private static final String FETCH_SIZE_CONFIG_DOC = "Number of records to fetch when getting results based on cursor";
+  private static final String FETCH_SIZE_CONFIG_DISPLAY = "Records to fetch";
 
   public static final String NUMERIC_PRECISION_MAPPING_CONFIG = "numeric.precision.mapping";
   private static final String NUMERIC_PRECISION_MAPPING_DOC =
@@ -451,9 +456,19 @@ public class JdbcSourceConnectorConfig extends AbstractConfig {
         CONNECTOR_GROUP,
         5,
         Width.MEDIUM,
-        TIMESTAMP_DELAY_INTERVAL_MS_DISPLAY);
+        TIMESTAMP_DELAY_INTERVAL_MS_DISPLAY
+    ).define(
+        FETCH_SIZE_CONFIG,
+        Type.INT,
+        FETCH_SIZE_DEFAULT,
+        Importance.MEDIUM,
+        FETCH_SIZE_CONFIG_DOC,
+        CONNECTOR_GROUP,
+        6,
+        Width.MEDIUM,
+        FETCH_SIZE_CONFIG_DISPLAY);
   }
-
+  
   public static final ConfigDef CONFIG_DEF = baseConfigDef();
 
   public JdbcSourceConnectorConfig(Map<String, String> props) {
