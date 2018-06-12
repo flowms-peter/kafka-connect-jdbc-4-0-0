@@ -67,7 +67,8 @@ public class TimestampIncrementingTableQuerier extends TableQuerier {
   public TimestampIncrementingTableQuerier(QueryMode mode, String name, String topicPrefix,
                                            String timestampColumn, String incrementingColumn,
                                            Map<String, Object> offsetMap, Long timestampDelay,
-                                           String schemaPattern, boolean mapNumerics, Integer fetchSize) {
+                                           String schemaPattern, boolean mapNumerics, 
+                                           Integer fetchSize) {
     super(mode, name, topicPrefix, schemaPattern, mapNumerics, fetchSize);
     this.timestampColumn = timestampColumn;
     this.incrementingColumn = incrementingColumn;
@@ -165,7 +166,7 @@ public class TimestampIncrementingTableQuerier extends TableQuerier {
     if (incrementingColumn != null && timestampColumn != null) {
       Timestamp tsOffset = offset.getTimestampOffset();
       Long incOffset = offset.getIncrementingOffset();
-      final long currentDbTime = JdbcUtils.getCurrentTimeOnDB(
+      long currentDbTime = JdbcUtils.getCurrentTimeOnDB(
           stmt.getConnection(),
           DateTimeUtils.UTC_CALENDAR.get()
       ).getTime();
@@ -175,7 +176,7 @@ public class TimestampIncrementingTableQuerier extends TableQuerier {
       stmt.setLong(3, incOffset);
       stmt.setTimestamp(4, tsOffset, DateTimeUtils.UTC_CALENDAR.get());
       log.debug(
-          "Executing prepared statement with start time value = {} end time = {} and incrementing"
+          "Executing fresh prepared stmt with start time value = {} end time = {} and incrementing"
           + " value = {}",
           DateTimeUtils.formatUtcTimestamp(tsOffset),
           DateTimeUtils.formatUtcTimestamp(endTime),

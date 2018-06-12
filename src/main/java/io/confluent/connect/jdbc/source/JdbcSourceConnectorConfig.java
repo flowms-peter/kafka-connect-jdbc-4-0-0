@@ -85,7 +85,7 @@ public class JdbcSourceConnectorConfig extends AbstractConfig {
   
   public static final String FETCH_SIZE_CONFIG = "fetch.size";
   public static final int FETCH_SIZE_DEFAULT = 100;
-  private static final String FETCH_SIZE_CONFIG_DOC = "Number of records to fetch when getting results based on cursor";
+  private static final String FETCH_SIZE_CONFIG_DOC = "Number of records to fetch";
   private static final String FETCH_SIZE_CONFIG_DISPLAY = "Records to fetch";
 
   public static final String NUMERIC_PRECISION_MAPPING_CONFIG = "numeric.precision.mapping";

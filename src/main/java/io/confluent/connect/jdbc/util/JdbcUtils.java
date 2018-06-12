@@ -246,15 +246,26 @@ public class JdbcUtils {
     } else if ("Apache Derby".equals(dbProduct)
         || (dbProduct != null && dbProduct.startsWith("DB2"))) {
       query = "values(CURRENT_TIMESTAMP)";
+    } else if ("PostgreSQL".equals(dbProduct)) {
+      query = "select now();";
     } else {
       query = "select CURRENT_TIMESTAMP;";
     }
 
-    try (Statement stmt = conn.createStatement()) {
+    Statement stmt = null;
+    conn.commit();
+    //try (Statement stmt = conn.createStatement()) {
+    try {
+      stmt = conn.createStatement();
       log.debug("executing query " + query + " to get current time from database");
       ResultSet rs = stmt.executeQuery(query);
       if (rs.next()) {
-        return rs.getTimestamp(1, cal);
+        log.debug("executing query " + query + " result " + rs.getTimestamp(1, cal));
+        Timestamp ts = rs.getTimestamp(1, cal);
+        log.debug("executing query " + query + " result " + ts);
+        rs.close();
+        stmt.close();
+        return ts;
       } else {
         throw new ConnectException(
             "Unable to get current time from DB using query " + query + " on database " + dbProduct
