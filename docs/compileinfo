@@ -1,0 +1,7 @@
+~/flowms-development/kafka-connect-jdbc
+mvn clean compile install -DskipTests
+cp target/kafka-connect-jdbc-5.0.0-SNAPSHOT.jar ~
+
+within kafka-connect docker:
+cd /usr/share/java/kafka-connect-jdbc
+scp user@server:~/kafka-connect-jdbc-5.0.0-SNAPSHOT.jar .
