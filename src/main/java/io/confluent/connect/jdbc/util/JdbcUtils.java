@@ -247,7 +247,7 @@ public class JdbcUtils {
         || (dbProduct != null && dbProduct.startsWith("DB2"))) {
       query = "values(CURRENT_TIMESTAMP)";
     } else if ("PostgreSQL".equals(dbProduct)) {
-      query = "select now();";
+      query = "select localtimestamp;";
     } else {
       query = "select CURRENT_TIMESTAMP;";
     }
