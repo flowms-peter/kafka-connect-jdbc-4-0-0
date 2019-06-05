@@ -45,24 +45,25 @@ public abstract class DbMetadataQueries {
     final DatabaseMetaData meta = connection.getMetaData();
 
     final String product = meta.getDatabaseProductName();
-    final String schema = getSchema(connection, product);
+    final String schema = getSchema(connection, product, tableName);
 
     log.info(
-        "Checking table:{} exists for product:{} schema:{} catalog:",
+        "Checking table:{} exists for product:{} schema:{} catalog: {}",
         tableName,
         product,
         schema,
         catalog
     );
 
-    try (ResultSet rs = meta.getTables(catalog, schema, tableName, new String[]{"TABLE"})) {
+    try (ResultSet rs = meta.getTables(catalog, schema, 
+        getTableNoSchema(tableName), new String[]{"TABLE"})) {
       final boolean exists = rs.next();
       log.info(
           "product:{} schema:{} catalog:{} -- table:{} is {}",
           product,
           schema,
           catalog,
-          tableName,
+          getTableNoSchema(tableName),
           exists ? "present" : "absent"
       );
       return exists;
@@ -77,9 +78,14 @@ public abstract class DbMetadataQueries {
     final String product = dbMetaData.getDatabaseProductName();
     final String catalog = connection.getCatalog();
 
-    final String schema = getSchema(connection, product);
+    final String schema = getSchema(connection, product, tableName);
+
+    final int NoSchema = tableName.indexOf(".");
+
+    final String tableNameNoSchema = getTableNoSchema(tableName);
+
     final String tableNameForQuery
-        = product.equalsIgnoreCase("oracle") ? tableName.toUpperCase() : tableName;
+        = product.equalsIgnoreCase("oracle") ? tableNameNoSchema.toUpperCase() : tableNameNoSchema;
 
     log.info(
         "Querying column metadata for product:{} schema:{} catalog:{} table:{}",
@@ -115,11 +121,24 @@ public abstract class DbMetadataQueries {
     return new DbTable(tableName, columns);
   }
 
+  private static String getTableNoSchema(
+      final String tableName
+  ) throws SQLException {
+    if (tableName.indexOf(".") != -1) {
+      return tableName.split("\\.")[1];
+    } else {
+      return tableName;
+    }
+  }
+
   private static String getSchema(
       final Connection connection,
-      final String product
+      final String product,
+      final String tableName
   ) throws SQLException {
-    if (product.equalsIgnoreCase("oracle")) {
+    if (tableName.indexOf(".") != -1) {
+      return tableName.substring(0 , tableName.indexOf(".")); 
+    } else if (product.equalsIgnoreCase("oracle")) {
       // Use SQL to retrieve the database name for Oracle, apparently the JDBC API doesn't work
       // as expected
       try (

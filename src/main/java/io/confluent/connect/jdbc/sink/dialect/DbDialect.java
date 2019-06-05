@@ -55,7 +55,7 @@ public abstract class DbDialect {
       final Collection<String> nonKeyColumns
   ) {
     StringBuilder builder = new StringBuilder("INSERT INTO ");
-    builder.append(escaped(tableName));
+    builder.append(escaped(tableName.replace(".",escaped("."))));
     builder.append("(");
     joinToBuilder(builder, ",", keyColumns, nonKeyColumns, escaper());
     builder.append(") VALUES(");
@@ -70,7 +70,7 @@ public abstract class DbDialect {
       final Collection<String> nonKeyColumns
   ) {
     StringBuilder builder = new StringBuilder("UPDATE ");
-    builder.append(escaped(tableName));
+    builder.append(escaped(tableName.replace(".",escaped("."))));
     builder.append(" SET ");
 
     Transform<String> updateTransformer = new Transform<String>() {
@@ -105,7 +105,7 @@ public abstract class DbDialect {
     final List<String> pkFieldNames = extractPrimaryKeyFieldNames(fields);
     final StringBuilder builder = new StringBuilder();
     builder.append("CREATE TABLE ");
-    builder.append(escaped(tableName));
+    builder.append(escaped(tableName.replace(".",escaped("."))));
     builder.append(" (");
     writeColumnsSpec(builder, fields);
     if (!pkFieldNames.isEmpty()) {
@@ -123,7 +123,7 @@ public abstract class DbDialect {
     final boolean newlines = fields.size() > 1;
 
     final StringBuilder builder = new StringBuilder("ALTER TABLE ");
-    builder.append(escaped(tableName));
+    builder.append(escaped(tableName.replace(".",escaped("."))));
     builder.append(" ");
     joinToBuilder(builder, ",", fields, new Transform<SinkRecordField>() {
       @Override
@@ -280,7 +280,7 @@ public abstract class DbDialect {
       return new SqliteDialect();
     }
 
-    if (url.startsWith("jdbc:oracle:thin:@")) {
+    if (url.startsWith("jdbc:oracle:thin:")) {
       return new OracleDialect();
     }
 
