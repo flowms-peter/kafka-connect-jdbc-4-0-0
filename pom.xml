@@ -58,7 +58,7 @@
     <properties>
         <confluent.version>${project.version}</confluent.version>
         <derby.version>10.11.1.1</derby.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <sqlite-jdbc.version>3.8.11.2</sqlite-jdbc.version>
         <postgresql.version>9.4-1206-jdbc41</postgresql.version>
         <licenses.name>Apache License 2.0</licenses.name>
